@@ -6,8 +6,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
 import com.aldo.cursojwt.domain.enuns.TipoCliente;
 
+
+@Entity
 public class Cliente  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -17,8 +24,11 @@ public class Cliente  implements Serializable{
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
 	public Cliente() {
