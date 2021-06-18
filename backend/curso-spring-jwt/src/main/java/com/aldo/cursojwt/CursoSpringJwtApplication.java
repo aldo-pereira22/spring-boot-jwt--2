@@ -75,11 +75,12 @@ public class CursoSpringJwtApplication implements CommandLineRunner {
 		Cidade c2 = new Cidade(null, "São paulo", est2);
 		Cidade c3 = new Cidade(null,"Campinas", est2);
 		
+		
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
-		cidadeRepository.saveAll(Arrays.asList(c1, c3, c3));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
 		Cliente cli1 = new Cliente(null,"Maria Silva", "maria@gmail.com","3699999", TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("2222", "11111"));
@@ -90,6 +91,7 @@ public class CursoSpringJwtApplication implements CommandLineRunner {
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 		
 		clienteRepository.saveAll(Arrays.asList(cli1));
+		
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 		
