@@ -13,6 +13,7 @@ import com.aldo.cursojwt.domain.Cidade;
 import com.aldo.cursojwt.domain.Cliente;
 import com.aldo.cursojwt.domain.Endereco;
 import com.aldo.cursojwt.domain.Estado;
+import com.aldo.cursojwt.domain.ItemPedido;
 import com.aldo.cursojwt.domain.Pagamento;
 import com.aldo.cursojwt.domain.PagamentoComBoleto;
 import com.aldo.cursojwt.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.aldo.cursojwt.repositories.CidadeRepository;
 import com.aldo.cursojwt.repositories.ClienteRepository;
 import com.aldo.cursojwt.repositories.EnderecoRepository;
 import com.aldo.cursojwt.repositories.EstadoRepository;
+import com.aldo.cursojwt.repositories.ItemPedidoRepository;
 import com.aldo.cursojwt.repositories.PagamentoRepository;
 import com.aldo.cursojwt.repositories.PedidoRepository;
 import com.aldo.cursojwt.repositories.ProdutoRepository;
@@ -56,8 +58,8 @@ public class CursoSpringJwtApplication implements CommandLineRunner {
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
 	
-	 
-	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	
 	public static void main(String[] args) {
@@ -126,9 +128,17 @@ public class CursoSpringJwtApplication implements CommandLineRunner {
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 				
 				
-				
-				
-				
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2.000);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 				
 				
 				
