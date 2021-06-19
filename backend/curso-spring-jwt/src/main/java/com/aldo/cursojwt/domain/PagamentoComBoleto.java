@@ -5,12 +5,18 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.aldo.cursojwt.domain.enuns.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class PagamentoComBoleto extends Pagamento{
 	private static final long serialVersionUID = 1L;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataVencimento;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataPagamento;
+	
 	public PagamentoComBoleto() {
 		// TODO Auto-generated constructor stub
 	}
