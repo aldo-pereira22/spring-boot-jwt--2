@@ -38,4 +38,19 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping( value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id){
+		
+		categoria.setId(id);
+		try {
+			categoria = service.update(categoria);
+		} catch (ObjectNotFoundException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			e.getMessage();
+		}
+		return ResponseEntity.noContent().build();
+		
+	}
+	
 }
