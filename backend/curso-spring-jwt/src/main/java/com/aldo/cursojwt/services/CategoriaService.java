@@ -1,5 +1,6 @@
 package com.aldo.cursojwt.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class CategoriaService {
 	public  Categoria update(Categoria categoria) throws ObjectNotFoundException {
 		find(categoria.getId());
 		return repo.save(categoria);
+	}
+	
+	public List<Categoria> findAll(){
+		return repo.findAll();
 	}
 	
 	public void delete(Integer id) throws ObjectNotFoundException {
