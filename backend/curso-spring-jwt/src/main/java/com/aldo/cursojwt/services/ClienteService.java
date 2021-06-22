@@ -35,7 +35,11 @@ public class ClienteService {
 		updateData(newObjt,obj);
 		return repo.save(newObjt);
 	}
+<<<<<<< HEAD
 	 
+=======
+	
+>>>>>>> 2d0b121fab274a320a2785211139d590c0a446ad
 	
 	public void delete(Integer id) throws ObjectNotFoundException {
 		find(id);
@@ -44,7 +48,11 @@ public class ClienteService {
 			repo.deleteById(id);
 			
 		} catch (DataIntegrityViolationException e) {
+<<<<<<< HEAD
 			throw new DataIntegrityException("Não é possível exlcuir porque há entidades relacionadas.");
+=======
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos ");
+>>>>>>> 2d0b121fab274a320a2785211139d590c0a446ad
 		}
 	}
 	
