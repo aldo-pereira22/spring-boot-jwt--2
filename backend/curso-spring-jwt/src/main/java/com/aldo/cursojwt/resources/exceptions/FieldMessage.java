@@ -10,7 +10,7 @@ public class FieldMessage implements Serializable {
 	private String message;
 	
 	public FieldMessage() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public FieldMessage(String fieldName, String message) {
