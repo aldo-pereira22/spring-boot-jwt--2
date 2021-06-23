@@ -104,10 +104,17 @@ public class ClienteService {
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
 		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
-		Cidade cid = new Cidade();
-		cid.setId(objDto.getCiadeId());
-		cidadeRepository.save(cid);
-		
+				
+	
+		Cidade cid = new Cidade();		
+		cid.setId(objDto.getCidadeId());
+//		cidadeRepository.save(cid);
+
+		System.out.println("\n\nCIDADE OBJETO DTO:"+objDto.getCidadeId());
+		System.out.println("CIDADE ID: "+cid.getId());
+		System.out.println("CIDADE ESTADO: "+cid.getEstado());
+		System.out.println("CIDADE NOME : "+cid.getNome() +"\n");
+
 		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
 		cli.getEnderecos().add(end);
 		cli.getTelefones().add(objDto.getTelefone1());
