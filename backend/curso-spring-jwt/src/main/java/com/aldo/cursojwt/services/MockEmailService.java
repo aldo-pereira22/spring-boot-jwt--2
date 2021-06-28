@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MockEmailService extends AbstractEmailService{
 
-	private static final Logger LOG = LoggerFactory.getLogger(MockEmailService.class);
+		private static final Logger LOG = LoggerFactory.getLogger(MockEmailService.class);
 	
 	
 	@Override
