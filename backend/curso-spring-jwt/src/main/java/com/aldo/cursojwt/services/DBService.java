@@ -20,6 +20,7 @@ import com.aldo.cursojwt.domain.PagamentoComCartao;
 import com.aldo.cursojwt.domain.Pedido;
 import com.aldo.cursojwt.domain.Produto;
 import com.aldo.cursojwt.domain.enuns.EstadoPagamento;
+import com.aldo.cursojwt.domain.enuns.Perfil;
 import com.aldo.cursojwt.domain.enuns.TipoCliente;
 import com.aldo.cursojwt.repositories.CategoriaRepository;
 import com.aldo.cursojwt.repositories.CidadeRepository;
@@ -122,17 +123,27 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		Cliente cli1 = new Cliente(null, "Maria Silva", "aldo.dev22@gmail.com", "3699999", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "aldo.dev22@gmail.com", "59334690097", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("2222", "11111"));
+		
+		Cliente cli2 = new Cliente(null, "Anny Silva", "aldopereira.gyn@gmail.com", "99625839003", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		cli2.addPerfil(Perfil.ADMIN);
+		cli2.getTelefones().addAll(Arrays.asList("9329323", "6283023"));
+		
+		
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "jardim", "38283", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "8323", cli1, c2);
 
+		Endereco e3 = new Endereco(null, "Avenida Floriano", "2106", null, "Centro", "75370190", cli2, c2);
+
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 
-		clienteRepository.saveAll(Arrays.asList(cli1));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
