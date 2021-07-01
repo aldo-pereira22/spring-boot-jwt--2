@@ -82,5 +82,23 @@ public class UserSS implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public boolean hasHorle(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
+	}
 	 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,12 +16,15 @@ import org.springframework.stereotype.Service;
 import com.aldo.cursojwt.domain.Cidade;
 import com.aldo.cursojwt.domain.Cliente;
 import com.aldo.cursojwt.domain.Endereco;
+import com.aldo.cursojwt.domain.enuns.Perfil;
 import com.aldo.cursojwt.domain.enuns.TipoCliente;
 import com.aldo.cursojwt.dto.ClienteDTO;
 import com.aldo.cursojwt.dto.ClienteNewDTO;
 import com.aldo.cursojwt.repositories.CidadeRepository;
 import com.aldo.cursojwt.repositories.ClienteRepository;
 import com.aldo.cursojwt.repositories.EnderecoRepository;
+import com.aldo.cursojwt.security.UserSS;
+import com.aldo.cursojwt.services.exceptions.AuthorizationException;
 import com.aldo.cursojwt.services.exceptions.DataIntegrityException;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -42,6 +45,12 @@ public class ClienteService {
 	private CidadeRepository cidadeRepository;
 	
 	public Cliente find(Integer id) throws ObjectNotFoundException {
+		
+		UserSS user = UserService.authenticated();
+		if(user ==null || !user.hasHorle(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado! ");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
