@@ -30,10 +30,15 @@ import com.aldo.cursojwt.repositories.ItemPedidoRepository;
 import com.aldo.cursojwt.repositories.PagamentoRepository;
 import com.aldo.cursojwt.repositories.PedidoRepository;
 import com.aldo.cursojwt.repositories.ProdutoRepository;
+import com.aldo.cursojwt.services.S3Service;
 
 @SpringBootApplication
 public class CursoSpringJwtApplication implements CommandLineRunner {
 
+	
+	
+	@Autowired
+	private S3Service s3Service;
 	
 	
 	public static void main(String[] args) {
@@ -42,27 +47,8 @@ public class CursoSpringJwtApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
+		s3Service.uploadFile("/home/byaldo/Imagens/Captura de tela de 2021-04-30 17-47-36.png");
 				
 				
 		
