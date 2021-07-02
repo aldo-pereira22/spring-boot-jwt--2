@@ -1,5 +1,6 @@
 package com.aldo.cursojwt.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aldo.cursojwt.domain.Cidade;
 import com.aldo.cursojwt.domain.Cliente;
@@ -40,6 +42,10 @@ public class ClienteService {
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private S3Service  s3service;
+	
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
@@ -147,6 +153,10 @@ public class ClienteService {
 	}
 	
 	
+	public URI uploadProfilePicture(MultipartFile multiPartFIle) {
+	
+		return s3service.uploadFile(multiPartFIle);
+	}
 	
 	
 	
