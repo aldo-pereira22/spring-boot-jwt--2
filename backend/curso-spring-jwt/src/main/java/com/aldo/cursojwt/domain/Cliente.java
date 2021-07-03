@@ -55,8 +55,7 @@ public class Cliente  implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
-	
-	private String url;
+
 	
 	public Cliente() {
 
@@ -183,15 +182,6 @@ public class Cliente  implements Serializable{
 	}
 
 
-	public String getUrl() {
-		return url;
-	}
-
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
 	
 	
 	
